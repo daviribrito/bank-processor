@@ -11,8 +11,8 @@ public class Main {
         
         Transaction transaction = new Transaction(
             "001",
-            TransactionType.CREDITO,
-            new BigDecimal("150.00")
+            TransactionType.BOLETO,
+            new BigDecimal("390.00")
         );
 
         
@@ -28,6 +28,7 @@ public class Main {
         System.out.println("Tipo: " + result.getDetails().getType());
         System.out.println("Status: " + result.getStatus());
         System.out.println("Mensagem: " + result.getMessage());
+        System.out.println("Disponibilidade: " + result.getDetails().getType().getAvailability());
         System.out.println("Processado: " + result.getDetails().getProcessedAt().format(formatter));
 
     }

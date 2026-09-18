@@ -13,40 +13,21 @@ public class TransactionProcessor {
                     LocalDateTime.now()
                 );
 
-        switch (transaction.getType()) {
-            case PIX:
-
-                TransactionResult result = new TransactionResult(
+        switch (transaction.getType().getAvailability()) {
+            case AVAILABLE:
+                return new TransactionResult(
                     TransactionStatus.SUCCESS,
-                    "Transação PIX processada com sucesso!",
+                    "Transação " + details.getType() + " processada com sucesso!",
                     details
                 );
-                return result;
+                
+                case MAINTENANCE:
+                return new TransactionResult(
+                    TransactionStatus.ERROR,
+                    "Transação do tipo " + details.getType() + " em manutenção!",
+                    details
+                );
         
-            case TED:
-
-                return new TransactionResult(
-                    TransactionStatus.ERROR,
-                    "Transação TED não aceita no momento! Estamos trabalhando no cenário.",
-                    details
-                );
-                    
-             case CREDITO:
-
-                return new TransactionResult(
-                    TransactionStatus.ERROR,
-                    "Transação CREDITO não aceita no momento! Estamos trabalhando no cenário.",
-                    details
-                );
-
-             case BOLETO:
-
-                return new TransactionResult(
-                    TransactionStatus.ERROR,
-                    "Transação BOLETO não aceita no momento! Estamos trabalhando no cenário.",
-                    details
-                );
-
             default:
                 TransactionDetails errordetails = new TransactionDetails(
                     transaction.getId(),
@@ -57,7 +38,7 @@ public class TransactionProcessor {
                 
                 return new TransactionResult(
                     TransactionStatus.ERROR,
-                    "Tipo de transação não suportada.",
+                    "Transação do tipo:" + details.getType() + " não válida!",
                     errordetails
                 );
                 
