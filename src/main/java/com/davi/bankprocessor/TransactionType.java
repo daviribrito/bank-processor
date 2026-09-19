@@ -5,9 +5,7 @@ public enum TransactionType {
     PIX(TransactionAvailability.AVAILABLE),
     CREDITO(TransactionAvailability.MAINTENANCE),
     TED(TransactionAvailability.MAINTENANCE),
-    BOLETO(TransactionAvailability.MAINTENANCE),
-    BANANA(TransactionAvailability.INVALID);
-
+    BOLETO(TransactionAvailability.MAINTENANCE);
     private TransactionAvailability availability;
 
     private TransactionType (TransactionAvailability availability){

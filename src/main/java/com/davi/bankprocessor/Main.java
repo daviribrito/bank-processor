@@ -11,7 +11,7 @@ public class Main {
         
         Transaction transaction = new Transaction(
             "001",
-            TransactionType.BANANA,
+            TransactionType.PIX,
             new BigDecimal("390.00")
         );
 
