@@ -27,19 +27,19 @@ public class TransactionProcessor {
                     "Transação do tipo " + details.getType() + " em manutenção!",
                     details
                 );
-        
-            default:
-                TransactionDetails errordetails = new TransactionDetails(
-                    transaction.getId(),
-                    transaction.getType(),
-                    transaction.getAmount(),
-                    LocalDateTime.now()
-                );
-                
+
+                case INVALID:
                 return new TransactionResult(
                     TransactionStatus.ERROR,
-                    "Transação do tipo:" + details.getType() + " não válida!",
-                    errordetails
+                    "Transação do tipo " + details.getType() + " invalida no momento, tente novamente mais tarde!",
+                    details
+                );
+        
+            default:
+                return new TransactionResult(
+                    TransactionStatus.ERROR,
+                    "Transação do tipo:" + details.getType() + " não reconhecida, tente novamente ou troque a forma de pagamento!",
+                    details
                 );
                 
         }

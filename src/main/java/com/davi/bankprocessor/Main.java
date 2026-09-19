@@ -11,7 +11,7 @@ public class Main {
         
         Transaction transaction = new Transaction(
             "001",
-            TransactionType.BOLETO,
+            TransactionType.BANANA,
             new BigDecimal("390.00")
         );
 
